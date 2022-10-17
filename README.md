@@ -1,7 +1,8 @@
 # Cookery
 
 Cookery is self-host recipe database and website. It has been developed as digital recipe book for home users.
-It consist of:
+
+Cookery consists of:
 * cookery-server: written in python using flask-restx, exposing a ReST API
 * cookery-site: a SPA written using vue.js 2, using the API exposed by the server
 
