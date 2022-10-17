@@ -1,2 +1,3 @@
-# cookery
-A self-host cooking recipe website
+# Cookery
+
+Unsere Rezeptverwaltung

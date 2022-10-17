@@ -1,0 +1,8 @@
+// bootstrap variable overrides
+$theme-colors: (
+  "primary": #32251b  
+);
+
+// import Bootstrap and BootstrapVue source SCSS files
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-vue/src/index.scss';

@@ -1,0 +1,14 @@
+[general]
+base_url=http://localhost:3333
+DEBUG=true
+
+#[standalone]
+#host=127.0.0.1
+#port=3333
+
+[database]
+host=127.0.0.1
+user=
+password=
+database=cookery
+table_prefix=CK_

@@ -1,0 +1,38 @@
+.imgoverlay-container {
+	overflow: auto;
+}
+
+.imgoverlay-caption-style-2{
+	float: left;
+	margin: 0px;
+	position: relative;
+	overflow: hidden;
+}
+.imgoverlay-caption-style-2 img{
+	margin: 0px;
+	padding: 0px;
+	float: left;
+	z-index: 4;
+}
+.imgoverlay-caption-style-2 .caption{
+	cursor: pointer;
+	position: absolute;
+	opacity: 1;	
+	width: 100%;
+	bottom: 30px;	
+}
+.imgoverlay-caption-style-2 .blur{
+	background-color: rgba(0,0,0,0.7);
+	height: 30px;
+	width: 100%;
+	z-index: 5;
+	position: absolute;
+}
+.imgoverlay-caption-style-2 .caption-text{
+	z-index: 10;
+	color: #fff;
+	position: absolute;
+	width: 100%;
+	height: 30px;
+	text-align: center;		
+}
