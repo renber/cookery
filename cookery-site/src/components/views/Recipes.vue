@@ -6,7 +6,7 @@
                     <b-form-row>
                         <b-col class="sep-header">
                             Rezepte-Filter
-                        </b-col>                        
+                        </b-col>
                     </b-form-row>
 
                     <b-form-row class="mt-1" >
@@ -102,7 +102,7 @@
                             <b-button-group>
                                 <b-button size="sm" :pressed="viewStyle === 'images'" @click="swapViewStyle"> <b-icon icon="view-list" /> </b-button>
                                 <b-button size="sm" :pressed="viewStyle === 'list'" @click="swapViewStyle"> <b-icon icon="list" /> </b-button>
-                            </b-button-group>                        
+                            </b-button-group>
                             <b-button-group class="ml-1">
                                 <b-dropdown>
                                     <template #button-content>
@@ -113,7 +113,7 @@
                                 </b-dropdown>
                             </b-button-group>
                         </b-button-toolbar>
-                    </b-col>                    
+                    </b-col>
                 </b-row>
 
                 <b-row v-if="viewStyle === 'images'" class="align-self-stretch">
@@ -160,8 +160,8 @@ import RecipeRepository from 'src/repo/RecipeRepository'
 import IngredientRepository from 'src/repo/IngredientRepository'
 import TagRepository from 'src/repo/TagRepository'
 
-import ContentLayout from 'components/layout/ContentLayout'
-import PreviewTile from 'components/layout/PreviewTile'
+import ContentLayout from 'components/layout/ContentLayout.vue'
+import PreviewTile from 'components/layout/PreviewTile.vue'
 
 import TagUtils from 'src/utils/tag-utils'
 
@@ -220,7 +220,7 @@ export default {
                 id: "alphabetical_desc",
                 description: "Alphabetisch absteigend sortieren"
             }
-        ]        
+        ]
       },
       pagination: {
           currentPage: 1,
@@ -256,7 +256,7 @@ export default {
                         tag_list.push(tc.name + ':' + t)
                       }
                   })
-              })              
+              })
 
               const { data } = await RecipeRepository.list(this.groupName, page, this.pagination.elementsPerPage, this.filter.text, this.sortOrder.activeSortOrder.id, ingredient_list, tag_list)
               if (this.pagination.totalElementCount != data.recipe_count) {
@@ -348,7 +348,7 @@ export default {
     }
 
     .active-sort-order {
-        background-color: #6c757d;        
+        background-color: #6c757d;
     }
 
     .ingredient-path {
@@ -376,7 +376,7 @@ export default {
 
     .btn-tag-dropdown .dropdown-item {
         color: white;
-        padding: 0 0.5rem;       
+        padding: 0 0.5rem;
     }
 
     .dropdown-item:hover, .dropdown-item:focus {

@@ -26,7 +26,7 @@ Shows all information of a single recipe
         <b-row>
           <b-col cols="1"></b-col>
           <b-col cols="10" class="text-center">
-              <EditableSpinButtonGroup v-model="wantedPortionSize" :title="recipe.portion_text"></EditableSpinButtonGroup>
+              <EditableSpinButtonGroup id="spinner-portion-size" v-model="wantedPortionSize" :title="recipe.portion_text"></EditableSpinButtonGroup>
           </b-col>
           <b-col cols="1"></b-col>
         </b-row>
@@ -41,13 +41,13 @@ Shows all information of a single recipe
               <div v-if="ingredient.is_caption">
                  <strong> {{ ingredient.comment }} </strong>
               </div>
-              <div v-else style="margin-left:12px">                
-                {{ (ingredient.quantity * wantedPortionSize / recipe.portion_size) | formatCommonFractions }} {{ ingredient.unit }} 
+              <div v-else style="margin-left:12px">
+                {{ (ingredient.quantity * wantedPortionSize / recipe.portion_size) | formatCommonFractions }} {{ ingredient.unit }}
                 <a :href="ingredient.ingredient.associated_recipe_url | getPublicUrl">
                   {{ ingredient | getIngredientDisplayText(ingredient.quantity * wantedPortionSize / recipe.portion_size) }}
                 </a>
-                {{ ingredient.comment | inBrackets }}                                
-              </div>              
+                {{ ingredient.comment | inBrackets }}
+              </div>
             </b-col>
         </b-row>
         <b-row v-if="recipe.tags.length > 0">
@@ -57,10 +57,10 @@ Shows all information of a single recipe
           <b-container>
             <b-row no-gutters>
               <b-col cols="12">
-                <tag-view :tags="recipe.tags" />                
+                <tag-view :tags="recipe.tags" />
               </b-col>
             </b-row>
-          </b-container>          
+          </b-container>
         </b-row>
       </b-container>
     </template>
@@ -78,17 +78,17 @@ Shows all information of a single recipe
             <div class="text-left">
               <h2 class="step-number">{{ index + 1 | formatStepNumber }}</h2>
             </div></b-col>
-          
-          <b-col style="padding-top: 10px"> {{ step }} 
 
-            <!-- Button Bar for active step -->           
-            <b-button-toolbar  v-if="isCooking && activeStepIndex == index" style="padding-bottom:5px">             
-              <b-button-group v-if="speechSynthAllowed" class="mr-1">                            
+          <b-col style="padding-top: 10px"> {{ step }}
+
+            <!-- Button Bar for active step -->
+            <b-button-toolbar  v-if="isCooking && activeStepIndex == index" style="padding-bottom:5px">
+              <b-button-group v-if="speechSynthAllowed" class="mr-1">
                 <b-button size="sm" @click="tellStep(index)" v-on:click.stop title="Anweisungen wiederholen" v-b-tooltip.hover.bottom> <b-icon icon="arrow-repeat" /> </b-button>
               </b-button-group>
               <b-button-group class="mr-1">
                 <b-button size="sm" :disabled="index == 0" @click="prevStep" v-on:click.stop title="Vorheriger Schritt" v-b-tooltip.hover.bottom> <b-icon icon="arrow-left" /> </b-button>
-                <b-button size="sm" :disabled="index == recipe.steps.length - 1" @click="nextStep" v-on:click.stop title="Nächster Schritt" v-b-tooltip.hover.bottom> <b-icon icon="arrow-right" /> </b-button>              
+                <b-button size="sm" :disabled="index == recipe.steps.length - 1" @click="nextStep" v-on:click.stop title="Nächster Schritt" v-b-tooltip.hover.bottom> <b-icon icon="arrow-right" /> </b-button>
               </b-button-group>
 
               <b-input-group size="sm" v-if="speechControlAllowed">
@@ -101,7 +101,7 @@ Shows all information of a single recipe
                 <b-form-input readonly value="Hört zu..."></b-form-input>
               </b-input-group>
            </b-button-toolbar>
-          </b-col>          
+          </b-col>
 
         </b-row>
         <b-row class="mt-2" v-if="recipe.comments">
@@ -120,11 +120,11 @@ Shows all information of a single recipe
 </template>
 
 <script>
-import ContentLayout from "components/layout/ContentLayout"
+import ContentLayout from "components/layout/ContentLayout.vue"
 import RecipeRepository from "src/repo/RecipeRepository"
-import TagView from "components/layout/TagView" 
+import TagView from "components/layout/TagView.vue"
 import IngredientUtils from 'src/utils/ingredient-utils'
-import EditableSpinButtonGroup from "components/layout/EditableSpinButtonGroup"
+import EditableSpinButtonGroup from "components/layout/EditableSpinButtonGroup.vue"
 import UrlUtils from "src/utils/url-utils"
 
 import { speechSynth } from 'src/services/SpeechSynth'
@@ -169,21 +169,21 @@ export default {
             icon: "stop"
         },
         {
-            id: "speechSynthToggle",  
-            hidden: false,         
+            id: "speechSynthToggle",
+            hidden: false,
             variant: "danger",
             title: 'Sprachausgabe aktivieren',
             icon: "volume-mute"
-        }/*,   
+        }/*,
         {
             id: "speechControlToggle",
             variant: "danger",
             title: 'Sprachsteuerung aktivieren',
             icon: "mic-mute"
-        } */            
-      ],    
-      speechSynthToggleBtn: null,   
-      //speechControlToggleBtn: null,   
+        } */
+      ],
+      speechSynthToggleBtn: null,
+      //speechControlToggleBtn: null,
       recipe: {},
       wantedPortionSize: 4,
       isCooking: false,
@@ -202,11 +202,11 @@ export default {
 
     this.speechSynthToggleBtn = this.cookingActions[1]
     this.speechControlToggleBtn = this.cookingActions[2]
-    this.updateButtons()        
+    this.updateButtons()
   },
   beforeDestroy () {
     // stop speech recognition, if it is running
-    // speechListener.stop()    
+    // speechListener.stop()
   },
   methods: {
     async fetch() {
@@ -215,7 +215,7 @@ export default {
         // TODO: handle errors (e.g. recipe does not exist)
         const { data } = await RecipeRepository.get(this.recipeSiteId);
         this.recipe = data;
-        this.wantedPortionSize = this.recipe.portion_size        
+        this.wantedPortionSize = this.recipe.portion_size
 
         // push the "correct" url
           this.$router.replace({
@@ -224,10 +224,15 @@ export default {
               id: this.recipe.short_id,
               readableId: this.recipe.readable_id,
             },
-          }).catch(err => console.log(err.name));
+          }).catch(err => {
+            if (err.name !== 'NavigationDuplicated') {
+              console.log(err)
+            }
+          });
       } catch (e) {
         // TODO: check for not found or other error
         // forward to 404 page (but keep the current url)
+        console.log(e)
         this.$router.push({ name: "404", params: { 0: this.$route.path } });
       } finally {
         this.isLoading = false;
@@ -260,10 +265,10 @@ export default {
       } */
     },
     startCooking () {
-      this.activeStepIndex = 0      
+      this.activeStepIndex = 0
       this.updateButtons()
 
-      this.isCooking = true      
+      this.isCooking = true
     },
     stopCooking () {
       this.activeStepIndex = -1
@@ -281,9 +286,9 @@ export default {
         params: { id: this.recipe.short_id, readableId: this.recipe.readable_id },
       });
     },
-    activateStep (stepIndex) {    
+    activateStep (stepIndex) {
       if (!this.isCooking) return
-      
+
       if (this.activeStepIndex !== stepIndex) {
         this.activeStepIndex = stepIndex
 
@@ -295,14 +300,14 @@ export default {
     tellStep (stepIndex) {
       speechSynth.say(this.recipe.steps[stepIndex])
     },
-    prevStep () {      
-      if (this.activeStepIndex > 0) {  
+    prevStep () {
+      if (this.activeStepIndex > 0) {
         this.activateStep(this.activeStepIndex - 1)
       }
     },
     nextStep () {
       if (this.activeStepIndex < this.recipe.steps.length - 1) {
-        this.activateStep(this.activeStepIndex + 1)        
+        this.activateStep(this.activeStepIndex + 1)
       }
     },
     updateButtons () {
@@ -315,7 +320,7 @@ export default {
         this.speechControlToggleBtn.variant = this.speechControlAllowed ? 'success' : 'danger'
         this.speechControlToggleBtn.icon = this.speechControlAllowed ? 'mic' : 'mic-mute' */
       }
-    }    
+    }
   },
   filters: {
     inBrackets: function (value) {
@@ -361,7 +366,7 @@ export default {
       } else {
         return null
       }
-    }    
+    }
 },
 };
 </script>

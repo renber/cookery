@@ -1,4 +1,4 @@
-var BKDRHash = require('./bkdr-hash');
+import BKDRHash from './bkdr-hash'
 
 /**
  * Convert RGB Array to HEX

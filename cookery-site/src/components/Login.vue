@@ -3,12 +3,12 @@
   <div id="login">
     <b-container>
       <b-row class="text-center"><b-col>
-        <img src="" class="logo">
+        <img class="logo">
         <div id="logo">
 					<h1 class="text-center">
 						Cookery
 					</h1>
-				</div>        
+				</div>
       </b-col></b-row>
     </b-container>
     <b-container class="box" style="padding:20px 10px;background-color:rgba(255, 255, 255, 0.5);">
@@ -46,7 +46,7 @@
             <b-button v-else type="submit" variant="primary" size="lg">Anmelden</b-button>
           </b-col> </b-form-row>
         </b-form>
-      </b-col></b-row>      
+      </b-col></b-row>
     </b-container>
   </div>
 
@@ -66,8 +66,8 @@ export default {
       password: '',
       error_message: ''
     }
-  },  
-  methods: {    
+  },
+  methods: {
     async checkCreds () {
       const { username, password } = this
 
@@ -90,7 +90,7 @@ export default {
           // check if there is a redirect in the query
           // and go to this page if so
           console.log("Redirect: " + this.$route.query.redirect)
-          const target = this.$route.query.redirect          
+          const target = this.$route.query.redirect
           this.$router.push(target ?? '/')
         }
       } catch (error) {
@@ -99,7 +99,7 @@ export default {
         // still Unauthorized?
         if (error.response && error.response.status === 401) {
           this.error_message = 'Benutzername und/oder Passwort stimmen nicht oder das Nutzerkonto wurde deaktiviert.'
-        } else { 
+        } else {
           this.error_message = 'Der Server ist nicht erreichbar. Bitte versuchen Sie es später erneut.'
         }
         this.toggleLoading()
@@ -120,7 +120,7 @@ export default {
 
 /* make the login box smaller on large resolutions */
 @media (min-width: 1200px) {
-    .container{       
+    .container{
        max-width: 600px;
     }
 }
@@ -128,8 +128,8 @@ export default {
 #login {
   padding-top: 10em;
   min-width: 100vw;
-  min-height: 100vh;        
-  background: url('~@/assets/img/login_bg.jpg');
+  min-height: 100vh;
+  background: url('assets/img/login_bg.jpg');
   background-size: cover;
 }
 
@@ -139,7 +139,7 @@ export default {
   }
 }
 
-#logo {	
+#logo {
 	line-height: 120px;
 }
 
@@ -174,6 +174,6 @@ export default {
   width: 32px;
 }
 .text-red {
-    color: darkred;    
+    color: darkred;
 }
 </style>

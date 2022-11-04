@@ -24,18 +24,18 @@ Usage:
 </template>
 
 <script>
-import ActionButton from 'components/layout/ActionButton'
+import ActionButton from 'components/layout/ActionButton.vue'
 
 export default {
     name: 'QuickActionBar',
     components: {
-      ActionButton          
+      ActionButton
     },
     props: {
         'actions': Array
     },
     methods: {
-        clicked (actionId) {            
+        clicked (actionId) {
             this.$emit("actionExecuted", actionId)
         }
     }
@@ -44,8 +44,8 @@ export default {
 
 <style>
 
-#quickactionbar {    
-    background: white;    
+#quickactionbar {
+    background: white;
 }
 
 .btn {

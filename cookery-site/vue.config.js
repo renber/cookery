@@ -1,5 +1,5 @@
 var path = require('path')
-module.exports = {  
+module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? '/cookery/' : '/',
   configureWebpack: {
     resolve: {

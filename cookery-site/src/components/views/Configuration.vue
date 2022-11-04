@@ -7,7 +7,7 @@
             <div id="nav-config">
              <h2> Konfiguration </h2>
 
-                <li>                
+                <li>
                     <ul>
                         <router-link tag="a" class="pageLink" to="/konfiguration/zutaten">
                             Zutatenliste
@@ -16,7 +16,7 @@
 
                     <ul>
                         <router-link tag="a" class="pageLink" to="/konfiguration/profil">
-                            Mein Profil                        
+                            Mein Profil
                         </router-link>
                     </ul>
                 </li>
@@ -24,17 +24,17 @@
         </template>
 
         <template v-slot:content>
-            <router-view />            
+            <router-view />
         </template>
 
         <template v-slot:actions>
-            <b-button> <b-icon-info-circle /> </b-button>            
+            <b-button> <b-icon-info-circle /> </b-button>
         </template>
     </ContentLayout>
 </template>
 
 <script>
-import ContentLayout from 'components/layout/ContentLayout'
+import ContentLayout from 'components/layout/ContentLayout.vue'
 
 export default {
     name: 'configuration',
@@ -46,17 +46,17 @@ export default {
 
 <style scoped>
     #nav-config a {
-        color: #f4eeea;        	
+        color: #f4eeea;
         text-shadow: 0 1px 1px #32251B;
         font-size: 1.2em;
     }
 
-    #nav-config a.active {	
+    #nav-config a.active {
         color: yellow;
     }
 
     #nav-config li {
         list-style: none;
         margin: 0 1em 0 1em;
-    }  
+    }
 </style>

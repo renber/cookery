@@ -24,7 +24,7 @@ Shows all information of a single recipe
           accept="image/jpeg"
           width="250"
           height="250"
-          zIndex="0"
+          :zIndex=0
           size="5"
           button-class="btn btn-secondary"
           :prefill="recipe.image_url"
@@ -39,13 +39,13 @@ Shows all information of a single recipe
         </picture-input>
       </div>
       <b-input-group>
-        <b-form-input          
+        <b-form-input
           v-model="recipe.portion_size"
-          type="number"      
-          min="0"          
+          type="number"
+          min="0"
           number
         />
-        <b-input-group-append>          
+        <b-input-group-append>
           <b-form-input v-model="recipe.portion_text"> </b-form-input>
         </b-input-group-append>
       </b-input-group>
@@ -55,42 +55,42 @@ Shows all information of a single recipe
           <IngredientInput :ingredientEntry="ingredient" @delete="deleteIngredient" />
         </SlickItem>
       </SlickList>
-      <b-badge variant="success" href="#" @click="addIngredient" style="text-decoration: none">      
+      <b-badge variant="success" href="#" @click="addIngredient" style="text-decoration: none">
         <b-icon-plus /> Zutat
       </b-badge>
-      &nbsp;      
-      <b-badge variant="secondary" href="#" @click="addCaption" style="text-decoration: none">      
+      &nbsp;
+      <b-badge variant="secondary" href="#" @click="addCaption" style="text-decoration: none">
         <b-icon-plus /> Überschrift
       </b-badge>
-      <h3>Kategorien</h3>      
+      <h3>Kategorien</h3>
       <b-form-tags
         id="category-tags"
         ref="categoryTags"
-        separator=""        
+        separator=""
         placeholder="Kategorien hinzufügen"
         style="background-color:#32251b; border: none"
         v-model="recipe.tags">
       <template v-slot="{tags, removeTag}">
         <b-form-tag
             v-for="tag in tags"
-            @remove="removeTag(tag)"            
+            @remove="removeTag(tag)"
             :key="tag"
             :title="tag"
             :style="{'font-size': '11pt', 'background-color': getTagColor(tag)}"
-            class="mr-1"            
-          >{{ tag }}</b-form-tag>          
+            class="mr-1"
+          >{{ tag }}</b-form-tag>
         <autocomplete ref="tagSearchField" @submit="addTag" :search="searchTag" :debounceTime="250" placeholder="Kategorie hinzufügen..." style="margin-top:0.5em">
         </autocomplete>
-      </template>      
-      </b-form-tags>      
+      </template>
+      </b-form-tags>
       <small style="line-height: 1">Tipp: Geben Sie einen <strong>Doppelpunkt</strong> ein, um alle existierenden Oberkategorien zu sehen</small>
     </template>
 
-    <template v-slot:content>      
-      <b-container>                  
-        <b-row>          
+    <template v-slot:content>
+      <b-container>
+        <b-row>
           <b-col>
-            <b-alert :show="showAlert" dismissible fade variant="danger"> {{ errorMessage }} </b-alert>        
+            <b-alert :show="showAlert" dismissible fade variant="danger"> {{ errorMessage }} </b-alert>
             <h3>Zubereitung</h3>
           </b-col>
         </b-row>
@@ -129,8 +129,8 @@ Shows all information of a single recipe
 </template>
 
 <script>
-import ContentLayout from "components/layout/ContentLayout"
-import IngredientInput from "components/layout/IngredientInput"
+import ContentLayout from "components/layout/ContentLayout.vue"
+import IngredientInput from "components/layout/IngredientInput.vue"
 import RecipeRepository from "src/repo/RecipeRepository"
 import TagRepository from 'src/repo/TagRepository'
 
@@ -145,10 +145,10 @@ import { BAlert } from 'bootstrap-vue'
 
 export default {
   name: "CreateOrEditRecipe",
-  components: {    
+  components: {
     ContentLayout,
     BAlert,
-    IngredientInput,    
+    IngredientInput,
     PictureInput,
     SlickList,
     SlickItem,
@@ -206,7 +206,7 @@ export default {
         this.isLoading = true
 
         const { data } = await RecipeRepository.get(recipeId)
-        this.recipe = data        
+        this.recipe = data
         this.recipe.procedure = this.recipe.steps.join("\n\n")
       } catch (error) {
         // TODO
@@ -267,7 +267,7 @@ export default {
       const { data } = await TagRepository.search(input)
       return data.tags
     },
-    getTagColor (value) {            
+    getTagColor (value) {
       return TagUtils.getTagColor(value)
     },
     actionExecuted (actionId) {
@@ -285,15 +285,15 @@ export default {
     },
     async save() {
       try {
-        this.hideError()  
-        this.isSaving = true        
+        this.hideError()
+        this.isSaving = true
 
         let recipeData = {
           title: this.recipe.title,
           group: this.groupName,
           portion_size: this.recipe.portion_size,
           portion_text: this.recipe.portion_text,
-          ingredients: [],          
+          ingredients: [],
           tags: this.recipe.tags,
           steps: this.recipe.procedure.split("/\r?\n//\r?\n/"),
           comments: this.recipe.comments
@@ -342,7 +342,7 @@ export default {
           }
 
           // TODO: upload image, if selected
-        } catch (e) {          
+        } catch (e) {
           this.showError('Das Rezept konnte nicht gespeichert werden')
           console.log("error: " + e);
         }
@@ -373,15 +373,15 @@ export default {
 }
 
 .dragged-element {
-  font-family: Georgia, serif;		
+  font-family: Georgia, serif;
   color: white;
   background-color: #32251b;
 }
 
 ul {
   list-style-type: none;
-  padding: 0; 
-  margin: 0; 
+  padding: 0;
+  margin: 0;
 }
 
 h1,

@@ -17,14 +17,14 @@
                                 <b-nav-item  tag="b-nav-item" class="pageLink align-bottom" to="/kochen">Kochen</b-nav-item>
                                 <b-nav-item  tag="b-nav-item" class="pageLink align-bottom" to="/backen">Backen</b-nav-item>
                                 <b-nav-item  tag="b-nav-item" class="pageLink align-bottom" to="/cocktails">Cocktails</b-nav-item>
-                                <b-nav-item  tag="b-nav-item" class="pageLink align-bottom" to="/konfiguration">Konfiguration</b-nav-item>                                                                
-                            </b-navbar-nav> 
+                                <b-nav-item  tag="b-nav-item" class="pageLink align-bottom" to="/konfiguration">Konfiguration</b-nav-item>
+                            </b-navbar-nav>
 
                             <!-- separator, which is hidden when menu is collapsed -->
                             <b-nav-text class="d-none d-md-none d-lg-block d-xl-block">|</b-nav-text>
 
                             <b-navbar-nav >
-                                <b-nav-item-dropdown id="user-btn" right>                                
+                                <b-nav-item-dropdown id="user-btn" right>
                                     <template #button-content>
                                           <b-icon-person-circle /> {{ user.displayName }}
                                     </template>
@@ -37,8 +37,8 @@
                         </b-collapse>
                     </b-navbar>
                 </b-col>
-            </b-row>            
-            <router-view :key="$route.path" />            
+            </b-row>
+            <router-view :key="$route.path" />
         </b-container>
     </div>
 </div>
@@ -74,14 +74,14 @@ export default {
   computed: {
     user () {
       return {
-        displayName: this.$store.state.displayName        
+        displayName: this.$store.state.displayName
       }
     }
   },
   methods: {
       logout () {
           this.$store.commit('LOGOUT')
-          this.$router.push('/login')          
+          this.$router.push('/login')
       }
   }
 }
@@ -90,25 +90,25 @@ export default {
 <style scoped>
 
 #maincontainer {
-    padding-bottom: 20px;  
+    padding-bottom: 20px;
 }
 
 @media only screen and (min-width: 1600px) {
     #maincontainer {
         padding-left: 15%;
-        padding-right: 15%;        
+        padding-right: 15%;
     }
 }
 
 @media only screen and (max-width: 1599px) {
-    #maincontainer {        
+    #maincontainer {
         /* reserve space for the vertical scrollbar */
-        padding-right: 20px;        
+        padding-right: 20px;
     }
 }
 
 @media only screen and (max-width: 991px) {
-    #bgsh {        
+    #bgsh {
         /* reserve space for the vertical scrollbar */
         padding-top: 0px !important;
     }
@@ -126,13 +126,13 @@ export default {
 #bg {
     min-width: 100vw;
     min-height: 100vh;
-    background: #ad8667 url('~@/assets/img/bg.jpg');
+    background: #ad8667 url('assets/img/bg.jpg');
 }
 
 #bgsh {
     padding-top: 60px;
     min-height: 400px;
-    background: url('~@/assets/img/shadow.png') top left repeat-x;
+    background: url('assets/img/shadow.png') top left repeat-x;
 }
 
 #header {
@@ -158,12 +158,12 @@ export default {
 
 .navbar .pageLink {
         color: #f4eeea !important;
-        text-decoration: none !important;		
+        text-decoration: none !important;
         text-shadow: 0 1px 1px #32251B !important;
         font-size: 1.2em !important;
     }
 
-.navbar .nav-link.active {	
+.navbar .nav-link.active {
         font-size: 130%;
 }
 
@@ -175,7 +175,7 @@ export default {
 }
 
 .navbar {
-    background-color: transparent !important;    
+    background-color: transparent !important;
 }
 
 .navbar a {

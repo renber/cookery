@@ -8,7 +8,6 @@ import '@/assets/css/fonts.css'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import { sync } from 'vuex-router-sync'
 import routes from './routes'
 import { store } from 'src/store'
 
@@ -23,7 +22,7 @@ import {
   InputGroupPlugin, ButtonPlugin, ButtonToolbarPlugin,
   ButtonGroupPlugin, DropdownPlugin, FormPlugin, CardPlugin,
   FormRadioPlugin, IconsPlugin, FormTagsPlugin, FormTextareaPlugin,
-  BadgePlugin, TooltipPlugin, NavbarPlugin, FormSpinbuttonPlugin 
+  BadgePlugin, TooltipPlugin, NavbarPlugin, FormSpinbuttonPlugin
 } from 'bootstrap-vue'
 
 Vue.config.productionTip = false
@@ -85,8 +84,6 @@ router.beforeEach((to, from, next) => {
     }
   }
 })
-
-sync(store, router)
 
 // Check local storage to handle refreshes
 if (window.localStorage) {

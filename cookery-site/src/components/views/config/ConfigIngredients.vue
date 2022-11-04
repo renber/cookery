@@ -59,7 +59,7 @@
       </b-form>
     </b-modal>
 
-    <b-modal id="modal-add-ingredient" :title="modals.addIngredient.editId ? 'Zutat bearbeiten' : 'Zutat hinzufügen'" @ok="modalOkAddIngredient" cancel-title="Abbrechen">      
+    <b-modal id="modal-add-ingredient" :title="modals.addIngredient.editId ? 'Zutat bearbeiten' : 'Zutat hinzufügen'" @ok="modalOkAddIngredient" cancel-title="Abbrechen">
       <b-form @submit.prevent="modalSubmitAddIngredient" autocomplete="off">
           <b-form-group
             v-if="modals.addIngredient.parentNode"
@@ -98,7 +98,7 @@
               id="singular-input"
               v-model="modals.addIngredient.singular"
               type="text"
-              placeholder="Singularform, falls vorhanden/gewünscht"              
+              placeholder="Singularform, falls vorhanden/gewünscht"
             ></b-form-input>
           </b-form-group>
 
@@ -107,14 +107,14 @@
           </div>
 
           <b-button hidden type="submit"></b-button>
-      </b-form>      
+      </b-form>
     </b-modal>
   </b-container>
 </template>
 
 <script>
 import IngredientRepository from "src/repo/IngredientRepository"
-import IngredientGroupTreeNode from "components/layout/IngredientGroupTreeNode"
+import IngredientGroupTreeNode from "components/layout/IngredientGroupTreeNode.vue"
 
 export default {
   name: "config-ingredients",
@@ -175,7 +175,7 @@ export default {
       }
     },
     showModalEditIngredient(parentNode, ingredient) {
-      if (ingredient != null) {    
+      if (ingredient != null) {
         this.modals.editIngredient = ingredient
         this.modals.addIngredient.editId = ingredient.id
         this.modals.addIngredient.parentNode = parentNode
@@ -185,7 +185,7 @@ export default {
         this.$bvModal.show('modal-add-ingredient');
       }
     },
-    modalOkAddIngredientGroup(bvModalEvt) { // eslint-disable-line no-unused-vars      
+    modalOkAddIngredientGroup(bvModalEvt) { // eslint-disable-line no-unused-vars
       // Prevent modal from closing
       bvModalEvt.preventDefault()
 
@@ -212,13 +212,13 @@ export default {
       }
     },
     async createNewGroup(parentNode, name) {
-      let newGroup = {                        
-        name: name                
+      let newGroup = {
+        name: name
       }
 
       if (parentNode) {
         newGroup.parent_group_id = parentNode.group.id
-      }      
+      }
 
       try {
           const { data } = await IngredientRepository.createGroup(newGroup)
@@ -227,9 +227,9 @@ export default {
             this.groups.push(data)
           } else {
             parentNode.group.has_child_groups = true
-            
-            if (parentNode.wasLoaded) {              
-              parentNode.childGroups.push(data)        
+
+            if (parentNode.wasLoaded) {
+              parentNode.childGroups.push(data)
             } else {
               parentNode.expand()
             }
@@ -244,7 +244,7 @@ export default {
       }
     },
     async createNewIngredient(parentNode, name, singular) {
-      let newIngredient = {        
+      let newIngredient = {
         group_id: parentNode.group.id,
         name: name,
         singular: singular
@@ -258,7 +258,7 @@ export default {
           parentNode.group.has_ingredients = true
 
           if (parentNode.wasLoaded) {
-            parentNode.ingredients.push(data)            
+            parentNode.ingredients.push(data)
           } else {
             parentNode.expand()
           }
@@ -268,10 +268,10 @@ export default {
         this.modals.addIngredient.errorMessage = 'Die Zutat konnte nicht angelegt werden'
         // display error
         console.log(e)
-      }      
+      }
     },
     async updateIngredient(parentNode, ingredientId, name, singular) {
-      let updatedIngredient = {        
+      let updatedIngredient = {
         group_id: parentNode.group.id,
         name: name,
         singular: singular
@@ -280,16 +280,16 @@ export default {
       try {
           this.modals.addIngredient.errorMessage = null
 
-          await IngredientRepository.updateIngredient(ingredientId, updatedIngredient)          
+          await IngredientRepository.updateIngredient(ingredientId, updatedIngredient)
 
           this.$bvModal.hide('modal-add-ingredient')
-          return true          
+          return true
       } catch (e) {
         this.modals.addIngredient.errorMessage = 'Die Zutat konnte nicht aktualisiert werden'
         // display error
         console.log(e)
         return false
-      }      
+      }
     }
   },
 };

@@ -24,7 +24,7 @@ The main layout component with left column, large content column and QuickNaviga
 </template>
 
 <script>
-import QuickActionBar from 'components/layout/QuickActionBar'
+import QuickActionBar from 'components/layout/QuickActionBar.vue'
 
 export default {
   name: 'ContentLayout',

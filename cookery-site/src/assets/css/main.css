@@ -1,8 +1,8 @@
 
-* {
+/* {
 	margin: 0;
 	padding: 0;
-}
+} */
 
 a {
 	color: #32251b;
@@ -16,21 +16,21 @@ a:hover {
 body {
 	font-size: 12pt;
 	line-height: 1.75em;
-	font-family: Georgia, serif;	
+	font-family: Georgia, serif;
 }
 
 br.clear {
 	clear: both;
 }
 
-h1,h2,h3,h4 {			
+h1,h2,h3,h4 {
 	letter-spacing: -1px;
 	font-weight: bold;
 }
 
 h2,h3,h4 {
 	margin-bottom: 1em;
-	font-family: Arvo, serif;		
+	font-family: Arvo, serif;
 }
 
 h3 {
@@ -61,14 +61,14 @@ ul {
 .imageList li {
 	clear: both;
 }
-*/
+
 
 #banner {
 	background: #fff;
 }
 
-#content {		
-	padding: 10px;	
+#content {
+	padding: 10px;
 	background: #fff;
 	background-color: #fff;
 }
@@ -159,7 +159,7 @@ ul {
 	padding: 15px 0 15px 0;
 }
 
-#outer {	
+#outer {
 	margin: 0 auto;
 	padding: 30px;
 }
@@ -177,7 +177,7 @@ ul {
 	padding: 10px;
 }
 
-#sidebar {	
+#sidebar {
 	padding: 10px;
 	background: #32251b;
 	color: #e1d2c7;

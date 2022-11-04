@@ -21,4 +21,4 @@
     return hash;
 };
 
-module.exports = BKDRHash;
+export default BKDRHash;

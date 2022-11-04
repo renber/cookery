@@ -9,28 +9,28 @@
         <template v-slot:content>
           <b-container>
             <b-row align-h="center">
-              <img :src="require('@/assets/img/404.png')" />
+              <img src="assets/img/404.png" />
             </b-row>
             <b-row align-h="center">
               Die gesuchte Seite existiert nicht.
             </b-row>
-          </b-container>            
+          </b-container>
         </template>
 
         <template v-slot:actions>
-            <b-button> <b-icon-back /> </b-button>            
+            <b-button> <b-icon-back /> </b-button>
         </template>
     </ContentLayout>
 </template>
 
 <script>
-import ContentLayout from 'components/layout/ContentLayout'
+import ContentLayout from 'components/layout/ContentLayout.vue'
 
 export default {
   name: 'NotFound',
 
   components: {
-      ContentLayout      
+      ContentLayout
   }
 }
 </script>

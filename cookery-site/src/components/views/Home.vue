@@ -1,10 +1,10 @@
 <template>
         <b-container fluid id="content">
-        <b-row>            
+        <b-row>
             <b-col sm="12" >
                 <h2>Willkommen bei Cookery!</h2>
             </b-col>
-        </b-row>	
+        </b-row>
         <b-row>
             <b-col>
                 Die neuesten Koch-Rezepte:
@@ -12,7 +12,7 @@
         </b-row>
        <b-form-row>
             <b-col xs="12" sm="12" md="4" lg="2" xl="2" v-for="recipe in latestCookingRecipes" :key="recipe.id">
-                <PreviewTile :recipe="recipe" imgHeight="150px" withTags="true" />                
+                <PreviewTile :recipe="recipe" imgHeight="150px" :withTags=true />
             </b-col>
         </b-form-row>
         <b-row class="mt-2">
@@ -22,7 +22,7 @@
         </b-row>
        <b-form-row>
             <b-col xs="12" sm="12" md="4" lg="2" xl="2" v-for="recipe in latestBakingRecipes" :key="recipe.id">
-                <PreviewTile :recipe="recipe" imgHeight="150px" withTags="true" />                
+                <PreviewTile :recipe="recipe" imgHeight="150px" :withTags=true />
             </b-col>
         </b-form-row>
         <b-row class="mt-2">
@@ -32,16 +32,16 @@
         </b-row>
        <b-form-row>
             <b-col xs="12" sm="12" md="4" lg="2" xl="2" v-for="recipe in latestCocktails" :key="recipe.id">
-                <PreviewTile :recipe="recipe" imgHeight="150px" withTags="true" />                
+                <PreviewTile :recipe="recipe" imgHeight="150px" :withTags=true />
             </b-col>
-        </b-form-row>        
-    </b-container>	
+        </b-form-row>
+    </b-container>
 </template>
 
 <script>
 
 import RecipeRepository from 'src/repo/RecipeRepository'
-import PreviewTile from 'components/layout/PreviewTile'
+import PreviewTile from 'components/layout/PreviewTile.vue'
 
 export default {
   name: 'Home',
