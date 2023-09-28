@@ -42,7 +42,7 @@ Shows all information of a single recipe
                  <strong> {{ ingredient.comment }} </strong>
               </div>
               <div v-else style="margin-left:12px">
-                {{ (ingredient.quantity * wantedPortionSize / recipe.portion_size) | formatCommonFractions }} {{ ingredient.unit }}
+                {{ (ingredient.quantity * wantedPortionSize / recipe.portion_size) | formatIngredientAmount }} {{ ingredient.unit }}
                 <a :href="ingredient.ingredient.associated_recipe_url | getPublicUrl">
                   {{ ingredient | getIngredientDisplayText(ingredient.quantity * wantedPortionSize / recipe.portion_size) }}
                 </a>
@@ -126,6 +126,7 @@ import TagView from "components/layout/TagView.vue"
 import IngredientUtils from 'src/utils/ingredient-utils'
 import EditableSpinButtonGroup from "components/layout/EditableSpinButtonGroup.vue"
 import UrlUtils from "src/utils/url-utils"
+import { formatCommonFractions } from 'src/utils/str-utils.js'
 
 import { speechSynth } from 'src/services/SpeechSynth'
 // import { speechListener } from 'src/services/SpeechListener'
@@ -330,29 +331,8 @@ export default {
           return ''
         }
     },
-    formatCommonFractions: function (value) {
-      if (!value) {
-        return "";
-      }
-
-      if (value === 0.5) {
-        return "½"
-      }
-      if (value === 1/3 || value === 0.33) {
-        return "⅓"
-      }
-      if (value === 0.25) {
-        return "¼"
-      }
-      if (value === 0.2) {
-        return "⅕"
-      }
-      if (value === 0.1) {
-        return "⅒"
-      }
-
-      // round up to 2 decimapl places
-      return Math.ceil( value * 100 + Number.EPSILON ) / 100
+    formatIngredientAmount: function (value) {
+      return formatCommonFractions(value)
     },
     getIngredientDisplayText: function (ingredient, quantity) {
       return IngredientUtils.getIngredientDisplayText(ingredient, quantity)

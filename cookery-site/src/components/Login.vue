@@ -27,7 +27,7 @@
                 <b-input-group-text><b-icon-person /></b-input-group-text>
               </template>
 
-              <b-form-input v-model="username" type="text" placeholder="Benutzername"></b-form-input>
+              <b-form-input v-model="username" type="text" id="username" placeholder="Benutzername"></b-form-input>
             </b-input-group>
           </b-col></b-form-row>
 
@@ -37,7 +37,7 @@
                 <b-input-group-text><b-icon-lock /> </b-input-group-text>
               </template>
 
-              <b-form-input v-model="password" type="password" placeholder="Passwort"></b-form-input>
+              <b-form-input v-model="password" type="password" id="password" placeholder="Passwort"></b-form-input>
             </b-input-group>
           </b-col> </b-form-row>
 
