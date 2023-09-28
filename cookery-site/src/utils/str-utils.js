@@ -1,8 +1,5 @@
 export function formatCommonFractions(value) {
 
-    if (value === 0) {
-      return "0"
-    }
     if (!value) {
       return "";
     }
