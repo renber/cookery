@@ -1,3 +1,20 @@
+
+export function parseCommonFraction(input: string): number {
+    const slashIdx = input.indexOf('/')
+    if (slashIdx === -1) {
+      return Number.parseFloat(input)
+    }
+
+    const numerator = Number.parseInt(input.substring(0, slashIdx).trim())
+    const denominator = Number.parseInt(input.substring(slashIdx + 1).trim())
+
+    if (Number.isNaN(numerator) || Number.isNaN(denominator) || denominator === 0) {
+      return NaN
+    }
+
+    return numerator / denominator
+}
+
 export function formatCommonFractions(value) {
 
     if (!value) {
