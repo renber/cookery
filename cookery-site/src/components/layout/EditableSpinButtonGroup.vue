@@ -35,7 +35,7 @@
 
 <script>
 import { BIcon, BIconDash, BIconPlus } from 'bootstrap-vue'
-import { formatCommonFractions } from 'src/utils/str-utils.js'
+import { formatCommonFractions } from 'src/utils/number-utils.js'
 
 const portionSizeStepsInc = [0.1, 0.15, 0.2, 0.25, 0.33, 0.5, 0.66, 0.75, 1, 1.5, 2]
 const portionSizeStepsDec = portionSizeStepsInc.toReversed()

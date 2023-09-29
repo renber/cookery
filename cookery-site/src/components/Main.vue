@@ -14,6 +14,7 @@
                         <b-collapse id="nav-collapse" is-nav>
                             <b-navbar-nav class="ml-auto">
                                 <b-nav-item  tag="b-nav-item" class="pageLink align-bottom" to="/home">Home</b-nav-item>
+                                <b-nav-item  tag="b-nav-item" class="pageLink align-bottom" to="/rezepte">Alle Rezepte</b-nav-item>
                                 <b-nav-item  tag="b-nav-item" class="pageLink align-bottom" to="/kochen">Kochen</b-nav-item>
                                 <b-nav-item  tag="b-nav-item" class="pageLink align-bottom" to="/backen">Backen</b-nav-item>
                                 <b-nav-item  tag="b-nav-item" class="pageLink align-bottom" to="/cocktails">Cocktails</b-nav-item>

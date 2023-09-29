@@ -74,6 +74,7 @@ const routes = [
           component: HomeView,
           meta: { description: 'Home', requiresAuth: true }
         },
+        generate_group_node('rezepte', undefined),
         generate_group_node('kochen', 0),
         generate_group_node('backen', 1),
         generate_group_node('cocktails', 2),

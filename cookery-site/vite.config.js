@@ -20,5 +20,8 @@ export default defineConfig({
       '~bootstrap': 'bootstrap',
       '~bootstrap-vue': 'bootstrap-vue'
     },
-  }
+  },
+  test: {
+
+  },
 })
