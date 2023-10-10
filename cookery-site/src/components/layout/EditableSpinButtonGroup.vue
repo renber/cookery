@@ -6,23 +6,7 @@
       </b-button>
     </b-input-group-prepend>
 
-    <b-form-text v-if="!this.editmode" class="border-secondary form-control form-control-md" style="background: white; padding: 4px 10px 0px 10px; margin: 0; cursor: text;" @click="edit(true)">
-      {{ formatPortionSize(value)  }}
-    </b-form-text>
-
-    <b-form-input
-      v-else
-      ref="input"
-      :id="id"
-      :size="size"
-      :value="value"
-      type="number"
-      number
-      min="0"
-      class="border-secondary text-center"
-      @update="valueChange"
-      @blur="edit(false)"
-    />
+    <FractionalNumberInput  :id="id" :size="size" :value="value" @valueChanged="valueChange"></FractionalNumberInput>
 
     <b-input-group-append>
       <b-button class="py-0" size="sm" @click="increase">
@@ -35,15 +19,18 @@
 
 <script>
 import { BIcon, BIconDash, BIconPlus } from 'bootstrap-vue'
-import { formatCommonFractions } from 'src/utils/number-utils.js'
+import FractionalNumberInput from "components/layout/FractionalNumberInput.vue"
 
-const portionSizeStepsInc = [0.1, 0.15, 0.2, 0.25, 0.33, 0.5, 0.66, 0.75, 1, 1.5, 2]
+import { formatCommonFraction } from 'src/utils/number-utils'
+
+const portionSizeStepsInc = [0.1, 0.15, 0.2, 0.25, 1/3, 0.5, 2/3, 0.75, 1, 1.5, 2]
 const portionSizeStepsDec = portionSizeStepsInc.toReversed()
 
 export default {
   name: 'EditableSpinButtonGroup',
 
   components: {
+    FractionalNumberInput,
     BIcon,
 
     /* eslint-disable vue/no-unused-components */
@@ -88,18 +75,6 @@ export default {
       } else {
         this.$emit('input', newValue)
       }
-    },
-    edit(enabled) {
-      this.editmode = enabled
-
-      if (enabled) {
-        this.$nextTick(() => {
-          this.$refs.input.select()
-        })
-      }
-    },
-    formatPortionSize(value) {
-      return formatCommonFractions(value)
     },
     increase() {
       if (this.value <= portionSizeStepsInc[portionSizeStepsInc.length -1 ]) {

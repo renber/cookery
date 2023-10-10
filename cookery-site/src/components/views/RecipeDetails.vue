@@ -126,7 +126,7 @@ import TagView from "components/layout/TagView.vue"
 import IngredientUtils from 'src/utils/ingredient-utils'
 import EditableSpinButtonGroup from "components/layout/EditableSpinButtonGroup.vue"
 import UrlUtils from "src/utils/url-utils"
-import { formatCommonFractions } from 'src/utils/number-utils.js'
+import { formatCommonFraction } from 'src/utils/number-utils'
 
 import { speechSynth } from 'src/services/SpeechSynth'
 // import { speechListener } from 'src/services/SpeechListener'
@@ -332,7 +332,7 @@ export default {
         }
     },
     formatIngredientAmount: function (value) {
-      return formatCommonFractions(value)
+      return formatCommonFraction(value)
     },
     getIngredientDisplayText: function (ingredient, quantity) {
       return IngredientUtils.getIngredientDisplayText(ingredient, quantity)
