@@ -13,6 +13,9 @@
         <b-icon icon="plus" font-scale="1.6" />
       </b-button>
       <b-input-group-text> {{ title }} </b-input-group-text>
+      <b-button class="py-0" size="sm" @click="help" style="max-width:20px;padding: 0;">
+        <b-icon icon="info" font-scale="1" />
+      </b-button>
     </b-input-group-append>
   </b-input-group>
 </template>
@@ -20,8 +23,6 @@
 <script>
 import { BIcon, BIconDash, BIconPlus } from 'bootstrap-vue'
 import FractionalNumberInput from "components/layout/FractionalNumberInput.vue"
-
-import { formatCommonFraction } from 'src/utils/number-utils'
 
 const portionSizeStepsInc = [0.1, 0.15, 0.2, 0.25, 1/3, 0.5, 2/3, 0.75, 1, 1.5, 2]
 const portionSizeStepsDec = portionSizeStepsInc.toReversed()
@@ -86,12 +87,14 @@ export default {
     },
 
     decrease() {
-      if (this.value <= portionSizeStepsDec[0]) {
-        const newValue = portionSizeStepsDec.find(v => v < this.value) ?? (this.value - 1)
-        this.valueChange(newValue)
-      } else {
-        this.valueChange(this.value - 1)
-      }
+      const newValue = portionSizeStepsDec.find(v => v < this.value) ?? this.value - 1
+      if (newValue > 0) {
+          this.valueChange(newValue)
+        }
+    },
+
+    help() {
+      alert("Eingabe mit Brüchen ist möglich (1/2, 3/8, ...)")
     }
   }
 }

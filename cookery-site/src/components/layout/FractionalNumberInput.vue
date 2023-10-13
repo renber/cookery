@@ -65,7 +65,6 @@ export default {
       if (Number.isNaN(f)) {
         this.displayValue = newValue
       } else {
-        console.log("change")
         if (f <= 0) {
           this.displayValue = '0'
           this.$emit('valueChanged', 0)

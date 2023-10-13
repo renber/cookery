@@ -258,7 +258,8 @@ export default {
                   })
               })
 
-              const { data } = await RecipeRepository.list(this.groupName, page, this.pagination.elementsPerPage, this.filter.text, this.sortOrder.activeSortOrder.id, ingredient_list, tag_list)
+              const groupName = this.groupName === 'rezepte' ? '*' : this.groupName
+              const { data } = await RecipeRepository.list(groupName, page, this.pagination.elementsPerPage, this.filter.text, this.sortOrder.activeSortOrder.id, ingredient_list, tag_list)
               if (this.pagination.totalElementCount != data.recipe_count) {
                 this.pagination.totalElementCount = data.recipe_count
               }

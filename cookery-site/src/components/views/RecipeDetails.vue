@@ -217,10 +217,11 @@ export default {
         const { data } = await RecipeRepository.get(this.recipeSiteId);
         this.recipe = data;
         this.wantedPortionSize = this.recipe.portion_size
+        const groupName = this.recipe.group
 
         // push the "correct" url
           this.$router.replace({
-            name: this.groupName + "-recipe-details",
+            name: groupName + "-recipe-details",
             params: {
               id: this.recipe.short_id,
               readableId: this.recipe.readable_id,
