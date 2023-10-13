@@ -55,10 +55,16 @@ def db_recipe_by_short_id(short_id):
 
 @orm.db_session
 def __db_recipes_filter(group, q, ingredients, tags):
-    if q:
-        query =  Recipe.select(lambda r: r.rec_group == group and q in r.rec_title)
+    if not group or group == '*':
+        if q:
+            query =  Recipe.select(lambda r: q in r.rec_title)
+        else:
+            query = Recipe.select()
     else:
-        query =  Recipe.select(rec_group = group)
+        if q:
+            query =  Recipe.select(lambda r: r.rec_group == group and q in r.rec_title)
+        else:
+            query =  Recipe.select(rec_group = group)
 
     for ingredient_id in ingredients:
         query = query.filter(lambda r: orm.exists(ing for ing in r.rec_ingredients if ing.ri_ingredient.in_uid == UUID(ingredient_id)))
