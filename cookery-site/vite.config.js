@@ -2,8 +2,11 @@ import { fileURLToPath } from 'url'
 import { defineConfig } from 'vite'
 import { createVuePlugin as vue2 } from 'vite-plugin-vue2'
 
+const BASE_PATH = (process.env.ASSET_URL ?? '') + (process.env.NODE_ENV === 'production' ? 'cookery/' : '')
+
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: BASE_PATH,
   plugins: [
     vue2({
       jsx: true,
