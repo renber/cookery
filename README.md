@@ -10,3 +10,5 @@ Cookery focuses on presenting recipes in a clean and good to read way.
 In addition, it provides a quite extensive search function.
 
 (Currently the website is in German only)
+
+![Cookery's home page](doc/home.png)
