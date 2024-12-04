@@ -53,6 +53,7 @@ class SessionMgr:
 
     # _sessions = {}
 
+    @orm.db_session
     def newSession(self, user, userid):
         '''
         Creates a new session and returns the
@@ -85,7 +86,7 @@ class SessionMgr:
 
         session = self.getSessionInfo(token)
 
-        if session == None:
+        if session is None:
             # token does not exist
             return TokenStatus.SESSION_TOKEN_INVALID, None
 
